@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Employee Registration</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+
+{% block content %}
+<div class="container">
+  <div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">Employee Register</h1>
+    <hr>
+    <!--
+    <div class ="form" action ="submit" method="">
+    <div class = "row">
+    	<div class = "form-group">
+   		<div class = "col-sm-6 col-md-6 col-lg-6">
+    		{{form.first_name|as_crispy_field}}
+    	</div>
+    	<div class = "col-sm-6 col-md-6 col-lg-6">
+    		{{form.last_name|as_crispy_field}}
+    	</div>
+        </div>
+    </div>
+    <br>
+    <div class = "row">
+    	<div class = "form-group">
+    	<div class = "col-sm-6 col-md-6 col-lg-6">
+    		{{form.email|as_crispy_field}}
+    	</div>
+    	<div class = "col-sm-6 col-md-6 col-lg-6">
+    		{{form.password|as_crispy_field}}
+    	</div>
+        </div>
+    </div>
+    <br>
+    
+   <div class = "row">
+   	<div class = "form-group">
+   <button type = "submit" class = "btn btn-success btn-block btn-lg"><i class="fas fa-database"></i> Submit </button>
+   </div>
+-->
+
+
+<form action="user_form" method="post" autocomplete="off">
+    {% csrf_token %}
+
+    {{form.username|as_crispy_field}}
+    <br>
+
+    <div class="row">
+        <div class="col-md-4">
+        	
+    {{form.first_name|as_crispy_field}}
+    </div>
+        <div class="col-md-8">
+		{{form.last_name|as_crispy_field}}
+     </div>
+    </div>
+
+    <!--{{form.is_staff}} -->
+   
+    <div class="row">
+        <div class="col-md-4">
+            {{form.email|as_crispy_field}}
+        </div>
+        <div class="col-md-8">
+            {{form.password|as_crispy_field}}
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                Submit</button>
+        </div>
+        
+    </div>
+
+</form>
+
+
+
+   </div>
+</div>
+</div>
+
+{% endblock %}
+</body>
+</html>
+
+
+
+
+
+
+
+<html>
+<head> User Form
+</head>
+<body>
+
+<form action="" method = "POST">
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">User Registration</h1>
+{{form}}
+</div>
+</div>
+</form>
+

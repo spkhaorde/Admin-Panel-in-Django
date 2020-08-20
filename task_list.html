@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+<html>
+<head>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+	<style>
+
+		
+	</style>
+
+</head>
+
+{% block content %}
+
+<div class="container">
+   <!-- <h1>Admin Task Panel</h1> -->
+    <div class="row">
+
+
+      <div class="col-md-4 ">
+        <h4>Create Task</h3>
+        <hr>
+        <form action="task_form" enctype="multipart/form-data" method="post" autocomplete="off">
+          {% csrf_token %}
+        {{form.employee_name|as_crispy_field}}
+        {{form.title|as_crispy_field}}
+        {{form.description|as_crispy_field}}
+        {{form.status|as_crispy_field}}
+
+        {{form.attachment|as_crispy_field}}
+
+        <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                Submit</button>
+        </form>
+
+      </div>
+
+
+        <!--
+        <form id="addUser" action="">
+          <div class="form-group">
+            <input class="form-control" type="text" name="name" placeholder="Name" required>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="address" placeholder="Task Description" required>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="number" name="age" min="10" max="100" placeholder="Duration" required>
+          </div>
+          <button class="btn btn-primary form-control" type="submit">SUBMIT</button>
+        </form>
+      -->
+      
+
+      <div class = "col-md-8">
+<body data-spy="scroll" >
+ 
+
+<table id="tb1" class="table table-bordered ">
+<thead>
+  <tr class="text-center bg-info">
+    <th>Employee</th>
+    <th>Title</th>
+      <th>Description</th>
+      <th>Status</th>
+    <th>Progress Bar</th>
+	
+  </tr>
+ </thead> 
+
+
+<!-- your widget template -->
+	{% for work in work_list%}
+    <tr>
+  		<td>{{work.employee_name_id}}</td>
+       <td> <b class = "text-primary">{{work.title}}</b> </td>
+       <td> {{work.description}} </td>
+       <td>{{work.status}}</td>
+      
+    <td> 
+  
+  {% if work.status == 'completed' %}
+  <div class="progress" >
+  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width:100%">
+    100%
+  </div>
+  </div>  
+  <!--<h5  class="text-center">{{work.task_status}}</h5> -->
+  {% endif %}
+
+
+  {% if work.status == 'In progress' %}
+  <div class="progress" >
+  <div class="progress-bar progress-bar-striped progress-bar-info" role="progressbar" style="width:50%">
+    50%
+  </div>
+  </div>  
+  <!--<h5  class="text-center">{{work.task_status}}</h5>-->
+  </div>
+  {% endif %}
+
+  {% if work.status == 'on hold' %}
+  <div class="progress" >
+  <div class="progress-bar progress-bar-striped progress-bar-danger" role="progressbar" style="width:5%">
+    5%
+  </div>
+  </div>  
+  <!--<h5  class="text-center">{{work.task_status}}</h5>-->
+  </div>
+  {% endif %}
+
+ </td>
+    
+ </tr>
+
+ {% endfor %}
+    
+</table>
+</div>
+
+</body>
+</div>
+{% endblock content %}
+</html>
+
